@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BISWAJIT RABHA HACKER STORE</title>
+    <style>
+        /* Base Styling */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0d0d1a;
+            color: #fff;
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Screen Management */
+        .screen {
+            display: none;
+            width: 100%;
+            max-width: 500px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Yeh class page change karne me madad karegi */
+        .screen.active {
+            display: block !important;
+        }
+
+        #intro-screen.active {
+            display: flex !important;
+        }
+
+        /* Screen 1: Animation Intro */
+        #intro-screen {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .animated-title {
+            font-size: 2.2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #00ffcc;
+            text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
+            animation: pulse-glow 2s ease-in-out infinite alternate;
+            opacity: 1;
+            padding: 0 15px;
+        }
+
+        @keyframes pulse-glow {
+            0% { transform: scale(0.95); text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc; }
+            100% { transform: scale(1.05); text-shadow: 0 0 25px #00ffcc, 0 0 50px #00ffcc; }
+        }
+
+        /* Screen 2: Dashboard/Console */
+        .console-box {
+            background: #15152b;
+            border: 2px solid #3939ac;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 0 15px rgba(57, 57, 172, 0.4);
+        }
+
+        h2 {
+            color: #ff3366;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .status-log {
+            background: #050510;
+            border: 1px solid #222;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: left;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            color: #00ff00;
+            margin-bottom: 20px;
+            height: 120px;
+            overflow-y: auto;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #ff3366, #ff00cc);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(255, 51, 102, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 51, 102, 0.6);
+        }
+
+        /* Screen 3: Menu & Payment Details */
+        .menu-title {
+            color: #00ffcc;
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            text-shadow: 0 0 5px rgba(0,255,204,0.3);
+        }
+
+        .subtitle {
+            color: #aaa;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .info-panel {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #ff3366;
+            text-align: left;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .qr-container {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .qr-placeholder {
+            width: 200px;
+            height: auto;
+            display: block;
+        }
+
+        .timer {
+            color: #ff3333;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        /* Hidden dynamic components */
+        #whatsapp-section {
+            display: none;
+            margin-top: 15px;
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+        }
+        .btn-whatsapp:hover {
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="intro-screen" class="screen active">
+        <div class="animated-title" id="welcome-text">
+            BISWAJIT RABHA HACKER STORE
+        </div>
+    </div>
+
+    <div id="dashboard-screen" class="screen">
+        <div class="console-box">
+            <h2>SYSTEM CONSOLE</h2>
+            <div class="status-log" id="log-box">
+                [SYSTEM] Initializing modules...<br>
+                [SYSTEM] Status: Ready<br>
+                [INFO] Select option below to generate access key.
+            </div>
+            <button class="btn" onclick="startMenu()">START / ACTIVATE</button>
+        </div>
+    </div>
+
+    <div id="menu-screen" class="screen">
+        <div class="console-box">
+            <h1 class="menu-title">THE KING CHEATS MODS MENU</h1>
+            <p class="subtitle">Non-Root Mod Menu Seft Anti-Blacklist</p>
+            
+            <div class="info-panel">
+                <strong>Duration:</strong> 3 Days<br>
+                <strong>Price:</strong> ₹130<br>
+                <span style="color: #ff3366;">⚠️ Payment karne ke baad please usse screenshot kar lena, uske bad screenshot send karna.</span>
+            </div>
+
+            <div class="qr-container">
+                <img src="895638.jpg" alt="Payment QR Code" class="qr-placeholder">
+            </div>
+
+            <div class="timer" id="countdown">QR Expires in: 05:00</div>
+
+            <button class="btn" id="verify-btn" onclick="simulatePaymentSuccess()">I Have Paid (Verify)</button>
+
+            <div id="whatsapp-section">
+                <p style="color: #25D366; margin-bottom: 10px; font-weight: bold;">✓ Verification Link Generated Successfully!</p>
+                <a id="whatsapp-link" href="#" target="_blank">
+                    <button class="btn btn-whatsapp">Send Screenshot on WhatsApp</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Automatic Transition Logic from Intro to Dashboard
+        window.addEventListener('DOMContentLoaded', () => {
+            // 4000ms yaani 4 seconds ke baad automatic screen change hogi
+            setTimeout(() => {
+                const intro = document.getElementById('intro-screen');
+                const dashboard = document.getElementById('dashboard-screen');
+                
+                if(intro && dashboard) {
+                    intro.classList.remove('active');
+                    dashboard.classList.add('active');
+                    simulateConsoleTyping();
+                }
+            }, 4000); 
+        });
+
+        // Console auto-logs simulation
+        function simulateConsoleTyping() {
+            const logBox = document.getElementById('log-box');
+            if (logBox) {
+                setTimeout(() => { logBox.innerHTML += "<br>[BYPASS] Security bypass injected..."; }, 800);
+                setTimeout(() => { logBox.innerHTML += "<br>[ANTI-CHEAT] Anti-blacklist hooks active."; }, 1600);
+            }
+        }
+
+        // Transition from Dashboard to Payment Menu (When START clicked)
+        function startMenu() {
+            document.getElementById('dashboard-screen').classList.remove('active');
+            document.getElementById('menu-screen').classList.add('active');
+            startTimer(300); // 5 minutes (300 seconds) countdown
+            setupWhatsAppLink();
+        }
+
+        // 5-Minute Countdown Timer
+        function startTimer(duration) {
+            let timer = duration, minutes, seconds;
+            const display = document.getElementById('countdown');
+            
+            const interval = setInterval(() => {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = "QR Expires in: " + minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    clearInterval(interval);
+                    display.textContent = "QR Expired. Please refresh.";
+                    display.style.color = "#ff3333";
+                }
+            }, 1000);
+        }
+
+        // WhatsApp Custom Message Setup
+        function setupWhatsAppLink() {
+            const phoneNumber = "917099517202"; 
+            const message = "Sir Mene The King Cheats hack buy kiya hai 3 days ka or mene payment bhi kar diya please ab download links dedo";
+            const encodedMessage = encodeURIComponent(message);
+            
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            document.getElementById('whatsapp-link').href = whatsappUrl;
+        }
+
+        // Payment check toggle button function
+        function simulatePaymentSuccess() {
+            document.getElementById('verify-btn').style.display = 'none';
+            document.getElementById('whatsapp-section').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
